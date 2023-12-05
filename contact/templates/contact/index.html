@@ -1,6 +1,6 @@
 {% extends "global/base.html" %}
 
-{% block contacts %}
+{% block content %}
     <div class="responsive-table">
         <table class="contacts-table">
             <caption class="table-caption">
@@ -21,7 +21,7 @@
                 {% for contact in contacts %}
                     <tr class="table-row">
                         <td class="table-cel">
-                            <a href="#" class="table-link">{{contact.id}}</a>
+                            <a href="{% url "contact:contact" contact.id%}" class="table-link">{{contact.id}}</a>
                         </td>
                         <td class="table-cel">{{contact.first_name}}</td>
                         <td class="table-cel">{{contact.last_name}}</td>
@@ -32,4 +32,4 @@
             </tbody>
         </table>
     </div>
-{% endblock contacts %}
+{% endblock content %}
