@@ -2,12 +2,20 @@ from django.db import models
 from django.utils import timezone
 
 class Category(models.Model):
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
     name = models.CharField(max_length=50)
 
     def __str__(self) -> str:
         return f'{self.name}'
 
 class Contact(models.Model):
+    class Meta:
+        verbose_name = 'Contato'
+        verbose_name_plural = 'Contatos'
+
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
