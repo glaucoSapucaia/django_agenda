@@ -17,12 +17,12 @@ class Contact(models.Model):
         verbose_name = 'Contato'
         verbose_name_plural = 'Contatos'
 
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
-    created_date = models.DateTimeField(default=timezone.now)
-    description = models.TextField(blank=True)
+    first_name = models.CharField(max_length=50, verbose_name='Nome')
+    last_name = models.CharField(max_length=50, verbose_name='Sobrenome')
+    phone = models.CharField(max_length=50, verbose_name='Telefone')
+    email = models.EmailField(max_length=50, verbose_name='E-mail')
+    created_date = models.DateTimeField(default=timezone.now, verbose_name="Criado em")
+    description = models.TextField(blank=True, verbose_name='Descrição')
     show = models.BooleanField(default=True)
     picture = models.ImageField(blank=True, upload_to='pictures/%Y/Ym/')
     category = models.ForeignKey(
