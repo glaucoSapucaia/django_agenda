@@ -28,7 +28,7 @@ def contact(request, contact_id):
     )
 
 def search(request):
-    search_value = request.GET.get('q', '')
+    search_value = request.GET.get('q', '').strip()
     search_context = f'Busca por "{search_value}" -'
     if search_value == '':
         return redirect('contact:index')
@@ -44,6 +44,7 @@ def search(request):
     context = {
         'contacts': contacts,
         'site_title': search_context,
+        'search_value': search_value,
     }
 
     return render(
