@@ -22,7 +22,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=50, verbose_name='Telefone')
     email = models.EmailField(max_length=50, verbose_name='E-mail')
     created_date = models.DateTimeField(default=timezone.now, verbose_name="Criado em")
-    description = models.TextField(blank=True, verbose_name='Descrição')
+    description = models.TextField(blank=True, verbose_name='Descrição',)
     show = models.BooleanField(default=True)
     picture = models.ImageField(blank=True, upload_to='pictures/%Y/Ym/')
     category = models.ForeignKey(
@@ -30,6 +30,7 @@ class Contact(models.Model):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
+        verbose_name='Categoria',
     )
     owner = models.ForeignKey(
         User,
