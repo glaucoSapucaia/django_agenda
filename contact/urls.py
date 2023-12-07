@@ -4,6 +4,9 @@ from contact import views
 app_name = 'contact'
 
 urlpatterns = [
+    # contact.user urls
+    path("user/register/", views.register, name="register"),
+
     # contact.forms urls
     path('contact/create/', views.create, name='create'),
     path('contact/<int:contact_id>/update/', views.update, name='update'),

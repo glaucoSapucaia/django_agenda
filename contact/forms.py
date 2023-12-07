@@ -1,5 +1,9 @@
 from django import forms
 from contact import models
+from django.contrib.auth.forms import UserCreationForm
+
+class RegisterForm(UserCreationForm):
+    ...
 
 class ContactForm(forms.ModelForm):
     picture = forms.ImageField(
