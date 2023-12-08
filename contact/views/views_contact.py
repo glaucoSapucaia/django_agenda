@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
 from contact import models
+from django.contrib import messages
 
 def index(request):
     contacts = models.Contact.objects.filter(show=True).order_by('-id')
@@ -36,6 +37,7 @@ def search(request):
     search_value = request.GET.get('q', '').strip()
     search_context = f'Busca por "{search_value}" -'
     if search_value == '':
+        messages.info(request, 'Você não buscou por nada!')
         return redirect('contact:index')
     
     contacts = models.Contact.objects.filter(

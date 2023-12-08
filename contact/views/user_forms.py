@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from contact import forms
 
 def register(request):
@@ -7,6 +8,7 @@ def register(request):
         form = forms.RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Usuário registrado!')
             return redirect('contact:index')
     
     context = {
@@ -14,6 +16,7 @@ def register(request):
         'form': form,
     }
 
+    messages.error(request, 'Verifique seus dados!')
     return render(
         request,
         'contact/register.html',
