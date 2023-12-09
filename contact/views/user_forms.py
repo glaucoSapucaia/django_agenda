@@ -51,3 +51,23 @@ def logout_view(request):
     auth.logout(request)
     messages.success(request, 'Você saiu =)')
     return redirect('contact:login')
+
+def user_update(request):
+    form = forms.UserUpdateForm(instance=request.user)
+    if request.method == 'POST':
+        form = forms.UserUpdateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuário atualizado!')
+            return redirect('contact:user_update')
+
+    context = {
+        'site_title': 'Sua conta -',
+        'form': form,
+    }
+
+    return render(
+        request,
+        'contact/register.html',
+        context,
+    )
