@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from contact import forms
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
 def register(request):
@@ -47,11 +48,13 @@ def login_view(request):
         context,
     )
 
+@login_required(login_url='contact:login')
 def logout_view(request):
     auth.logout(request)
     messages.success(request, 'Você saiu =)')
     return redirect('contact:login')
 
+@login_required(login_url='contact:login')
 def user_update(request):
     form = forms.UserUpdateForm(instance=request.user)
     if request.method == 'POST':
