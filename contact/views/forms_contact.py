@@ -31,7 +31,6 @@ def create(request):
         'site_title': 'Criar contato -',
         'form_action': form_action,
     }
-    messages.error(request, 'Verifique os dados do contato!')
     return render(
         request,
         'contact/create.html',
@@ -54,6 +53,7 @@ def update(request, contact_id):
             contact = form.save()
             messages.success(request, 'Contato atualizado!')
             return redirect('contact:update', contact_id=contact.id)
+        messages.error(request, 'Verifique os dados do contato!')
 
         return render(
             request,
@@ -66,7 +66,7 @@ def update(request, contact_id):
         'site_title': 'Atualizar contato -',
         'form_action': form_action,
     }
-    messages.error(request, 'Verifique os dados do contato!')
+    
     return render(
         request,
         'contact/create.html',
@@ -85,7 +85,7 @@ def delete(request, contact_id):
         contact.delete()
         messages.success(request, 'Contato deletado!')
         return redirect('contact:index')
-    
+
     return render(
         request,
         'contact/contact.html',

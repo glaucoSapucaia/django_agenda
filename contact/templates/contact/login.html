@@ -1,0 +1,17 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+    <div class="form-wrapper">
+        {% if user.is_authenticated %}
+            <p>
+                <h2>Deslogar</h2>
+                Você esta logado como {{user.username}}. <br>
+                Clique <a href="{% url "contact:logout" %}">aqui </a>para deslogar.
+            </p>
+        {% else %}
+            <h2>Logar</h2>
+            {% include "contact/partials/_user-form.html" %}
+        {% endif %}
+
+    </div>
+{% endblock content %}
