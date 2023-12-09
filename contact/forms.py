@@ -164,6 +164,7 @@ class ContactForm(forms.ModelForm):
                 'accept': 'image/*',
             },
         ),
+        required=False,
     )
 
     class Meta:
